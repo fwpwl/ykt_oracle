@@ -1,9 +1,21 @@
 # coding:utf-8
 
 from data_transfer.module_managers.imust_manager import imust_get_course_data, imust_get_choose_data, \
-    is_valid_request, imust_get_student_data, imust_get_teacher_data
+    is_valid_request, imust_get_user_data, imust_get_department_data
 from data_transfer.utils.network import success_response, get_para_from_request_safe, error_response
 
+
+
+def imust_get_department_data_view(request):
+    """
+    URL[GET]:/data/imust/get_department_data/
+    """
+    # key = get_para_from_request_safe(request, 'key')
+    # if not is_valid_request(key):
+    #     return error_response('无效的请求!')
+
+    ret_data = imust_get_department_data()
+    return success_response(ret_data)
 
 def imust_get_user_data_view(request):
     """
@@ -13,7 +25,7 @@ def imust_get_user_data_view(request):
     # if not is_valid_request(key):
     #     return error_response('无效的请求!')
 
-    ret_data = imust_get_student_data()
+    ret_data = imust_get_user_data()
     return success_response(ret_data)
 
 
