@@ -5,8 +5,7 @@ from data_transfer.module_views.imust_views import imust_get_course_data_view, i
     imust_get_student_data_view, imust_get_teacher_data_view
 
 urlpatterns = [
-    url(r'^get_student_data/?$', imust_get_student_data_view),
-    url(r'^get_teacher_data/?$', imust_get_teacher_data_view),
+    url(r'^get_user_data/?$', imust_get_student_data_view),
     url(r'^get_course_data/?$', imust_get_course_data_view),
     url(r'^get_choose_data/?$', imust_get_choose_data_view),
 
