@@ -34,8 +34,6 @@ urlpatterns += [
     url(r"^bistu/", include("data_transfer.module_urls.bistu_urls")),
     # 中国医科大学
     url(r"^cmu/", include("data_transfer.module_urls.cmu_urls")),
-    # 内蒙古科技大学
-    url(r"^imust/", include("data_transfer.module_urls.imust_urls")),
     # 山东工艺
     url(r"^sdada/", include("data_transfer.module_urls.sdada_urls")),
 
