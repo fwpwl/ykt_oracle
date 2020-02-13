@@ -46,6 +46,8 @@ class OracleTransferHandler(object):
         print("generate DataTransfer Object success!")
 
     def get_raw_data_by_statement(self, statement, var_tuple):
+        print("statement-----------", statement)
+        print("var_tuple==========", var_tuple)
         if var_tuple:
             self.cursor.execute(statement, var_tuple)
         else:
