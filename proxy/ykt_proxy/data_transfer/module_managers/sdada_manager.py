@@ -54,7 +54,8 @@ def sdada_get_tra_data():
 
 def sdada_get_student_data():
     # 学院代码  班级代码 
-    department = get_department_data()[]
+    department = get_department_data()
+    print(department)
     statement = "select YXSH, BJDM, XM, XH, XZNJ from v_bzks"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
