@@ -97,7 +97,7 @@ def sdada_get_course_data(year_term):
 
 
 def sdada_get_choose_data(year_term):
-    statement = "select RWH, XH from v_it_kcb_xxkb where Xnxq='{}'".format(year_term)
+    statement = "select Jxbid, XH from v_it_kcb_xxkb where Xnxq='{}'".format(year_term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
