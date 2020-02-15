@@ -74,8 +74,7 @@ def sdada_get_course_data_view(request):
     term
     """
     # key = get_para_from_request_safe(request, 'key')
-    year = get_para_from_request_safe(request, 'year')
-    term = get_para_from_request_safe(request, 'term')
+    year_term = get_para_from_request_safe(request, 'year_term')
 
     # if not is_valid_request(key):
     #     return error_response('无效的请求!')
@@ -95,8 +94,7 @@ def sdada_get_choose_data_view(request):
     # if not is_valid_request(key):
     #     return error_response('无效的请求!')
 
-    year = get_para_from_request_safe(request, 'year')
-    term = get_para_from_request_safe(request, 'term')
+    year_term = get_para_from_request_safe(request, 'year_term')
 
-    ret_data = sdada_get_choose_data(year, term)
+    ret_data = sdada_get_choose_data(year_term)
     return success_response(ret_data)
