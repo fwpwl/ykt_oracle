@@ -81,7 +81,7 @@ def sdada_get_teacher_data():
     return final_info_list
 
 
-def sdada_get_course_data(year_term='201902'):
+def sdada_get_course_data(year_term):
     """
     jx0404id: 教学班
     Jxbid： 行政班id
@@ -95,7 +95,7 @@ def sdada_get_course_data(year_term='201902'):
     return final_info_list
 
 
-def sdada_get_choose_data(year_term='201902'):
+def sdada_get_choose_data(year_term):
     statement = "select RWH, XH from v_it_kcb_xxkb where Xnxq='{}'".format(year_term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
