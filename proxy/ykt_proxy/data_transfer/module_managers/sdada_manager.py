@@ -28,9 +28,24 @@ def query_data_to_dict_list(query_data_list_of_tuple, keys_list):
         final_list.append(tmp_dict)
     return final_list
 
+def sdada_get_department_data():
+    statement = "select mc from v_dw"
+    data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
+    keys_list = ["department_name", ]
+    final_info_list = query_data_to_dict_list(data_list, keys_list)
+    return final_info_list
+
+def sdada_get_tra_data():
+    statement = "select Yxsh, Zydm, bjmc, Nj from v_bj"
+    data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
+    keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
+    final_info_list = query_data_to_dict_list(data_list, keys_list)
+    return final_info_list
+
 
 def sdada_get_student_data():
-    statement = "select YMC, BJMC, XM, XH, NJM from T_XJ_XSXXB"
+    # 学院代码  班级代码 
+    statement = "select YXSH, BJDM, XM, XH, XZNJ from v_bzks"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
 
@@ -40,31 +55,31 @@ def sdada_get_student_data():
 
 
 def sdada_get_teacher_data():
-    statement = "select GLYXMC, JSXM, ZGH from T_SZ_JSXXB"
+    statement = "select DWMC, XM, ZGH from v_jzg"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", 'name', 'number']
-
     final_info_list = query_data_to_dict_list(data_list, keys_list)
-
     return final_info_list
 
 
-def sdada_get_course_data(year='2019-2020', term='2'):
-    statement = "select KKYXMC, KCDM, KCMC, RWH,DGBJMC, DGJSDM, DGJSMC, XN, XQ from T_RW_RWAPB where XN='{}' and XQ='{}'".format(year, term)
-    print(statement)
+def sdada_get_course_data(year_term='201902'):
+    """
+    jx0404id: 教学班
+    Jxbid： 行政班id
+    """
+    statement = "select Jxbid, Kch, Kcm, jx0404id, Jasmc, Bh, Xm, Xnxqdm from v_it_kcb_kcbxx where Xnxqdm='{}'".format(year_term)
 
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", "teacher_number",
-                 "teacher_name", "year", "term"]
+                 "teacher_name", "year_term"]
 
     final_info_list = query_data_to_dict_list(data_list, keys_list)
 
     return final_info_list
 
 
-def sdada_get_choose_data(year='2019-2020', term='2'):
-    statement = "select RWH, XH from T_XK_XSXKXXB where XN='{}' and XQ='{}'".format(year, term)
-
+def sdada_get_choose_data(year_term='201902'):
+    statement = "select RWH, XH from v_it_kcb_xxkb where Xnxq='{}'".format(year_term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
