@@ -54,6 +54,17 @@ def sdada_get_student_data():
     return final_info_list
 
 
+def sdada_get_gra_student_data():
+    # 学院代码  班级代码 
+    statement = "select YXSH, BJDM, XM, XH, XZNJ from v_yjs"
+    data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
+    keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
+
+    final_info_list = query_data_to_dict_list(data_list, keys_list)
+
+    return final_info_list
+
+
 def sdada_get_teacher_data():
     statement = "select DWMC, XM, ZGH from v_jzg where Ryzt=1"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
