@@ -32,6 +32,7 @@ def get_department_data():
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "department_code"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
+    print(final_info_list)
     department_dict = {}
     for k in final_info_list:
         department_dict[k[1]] = department_dict[k[0]]
