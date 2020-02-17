@@ -79,7 +79,7 @@ def sdada_get_course_data_view(request):
     # if not is_valid_request(key):
     #     return error_response('无效的请求!')
 
-    ret_data = sdada_get_course_data(year, term)
+    ret_data = sdada_get_course_data(year_term)
     return success_response(ret_data)
 
 
