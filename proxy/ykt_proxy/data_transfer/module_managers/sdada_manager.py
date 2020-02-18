@@ -45,7 +45,7 @@ def get_class_data():
     print(final_info_list)
     class_dict = {}
     for k in final_info_list:
-        class_dict[k['bjdm']] = k['bjdm']
+        class_dict[k['bjdm']] = k['bjmc']
     return class_dict
 
 def sdada_get_department_data():
