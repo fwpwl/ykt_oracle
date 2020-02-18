@@ -34,8 +34,7 @@ def get_department_data():
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     department_dict = {}
     for k in final_info_list:
-        print(k)
-        department_dict[k['department_code']] = department_dict[k['department_name']]
+        department_dict[k['department_code']] = k['department_name']
     return department_dict
 
 def sdada_get_department_data():
