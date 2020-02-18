@@ -71,7 +71,7 @@ def sdada_get_tra_data():
     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
-        k[k['major']] = zy[k['major']]
+        k['major'] = zy[k['major']]
     return final_info_list
 
 
