@@ -6,7 +6,7 @@ from data_transfer.module_views.sdada_views import sdada_get_course_data_view, s
 
 urlpatterns = [
     url(r'^get_department_data/?$', sdada_get_department_data_view),
-    url(r'^get_student_data/?$', sdada_get_student_data_view),
+    url(r'^get_user_data/?$', sdada_get_student_data_view),
     url(r'^get_teacher_data/?$', sdada_get_teacher_data_view),
     url(r'^get_course_data/?$', sdada_get_course_data_view),
     url(r'^get_choose_data/?$', sdada_get_choose_data_view),

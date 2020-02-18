@@ -79,14 +79,16 @@ def sdada_get_student_data():
     # 学院代码  班级代码 
     department = get_department_data()
     class_dict = get_class_data()
+    gra_student = sdada_get_gra_student_data()
+    teacher_list = sdada_get_teacher_data()
     statement = "select YXSH, BJDM, XM, XH, XZNJ from v_bzks"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
-    for k in final_info_list:
+    for k in final_info_list + gra_student:
         k['department_name'] = department[k['department_name']]
         k['tra_class_name'] = class_dict[k['tra_class_name']]
-    return final_info_list
+    return final_info_list + teacher_list
 
 
 def sdada_get_gra_student_data():
