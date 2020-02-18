@@ -38,7 +38,7 @@ def get_department_data():
     return department_dict
 
 def get_class_data():
-    statement = "select mc,dm from v_bj"
+    statement = "select bjdm, bjmc from v_bj"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["bjdm", "bjmc"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
