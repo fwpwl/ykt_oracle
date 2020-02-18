@@ -37,6 +37,17 @@ def get_department_data():
         department_dict[k['department_code']] = k['department_name']
     return department_dict
 
+def get_class_data():
+    statement = "select mc,dm from v_bj"
+    data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
+    keys_list = ["bjdm", "bjmc"]
+    final_info_list = query_data_to_dict_list(data_list, keys_list)
+    print(final_info_list)
+    class_dict = {}
+    for k in final_info_list:
+        class_dict[k['bjdm']] = k['bjdm']
+    return class_dict
+
 def sdada_get_department_data():
     statement = "select mc,dm from v_dw"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
@@ -56,6 +67,8 @@ def sdada_get_student_data():
     # 学院代码  班级代码 
     department = get_department_data()
     # print(department)
+    class_dict = get_class_data()
+    print(class_dict)
     statement = "select YXSH, BJDM, XM, XH, XZNJ from v_bzks"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
