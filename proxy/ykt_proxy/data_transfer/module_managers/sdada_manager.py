@@ -42,7 +42,6 @@ def get_class_data():
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["bjdm", "bjmc"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
-    print(final_info_list)
     class_dict = {}
     for k in final_info_list:
         class_dict[k['bjdm']] = k['bjmc']
@@ -66,16 +65,14 @@ def sdada_get_tra_data():
 def sdada_get_student_data():
     # 学院代码  班级代码 
     department = get_department_data()
-    # print(department)
     class_dict = get_class_data()
-    print(class_dict)
     statement = "select YXSH, BJDM, XM, XH, XZNJ from v_bzks"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
-
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
         k['department_name'] = department[k['department_name']]
+        k['tra_class_name'] = k['tra_class_name']
     return final_info_list
 
 
