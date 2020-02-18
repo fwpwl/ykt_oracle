@@ -136,7 +136,11 @@ def sdada_get_course_data(year_term):
                  "teacher_name", "year_term"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
-        k['department_name'] = department[k['department_code']]
+        try:
+            k['department_name'] = department.get(k['department_code'])
+        except:
+            k['department_name'] = '/'
+            pass
     return final_info_list
 
 
