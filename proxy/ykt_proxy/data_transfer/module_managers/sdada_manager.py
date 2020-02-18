@@ -73,7 +73,10 @@ def sdada_get_tra_data():
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
         k['major'] = zy[k['major']]
-        k['department_name'] = department[k['department_name']]
+        try:
+            k['department_name'] = department[k['department_name']]
+        except:
+            pass
     return final_info_list
 
 
