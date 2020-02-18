@@ -66,12 +66,14 @@ def sdada_get_department_data():
 
 def sdada_get_tra_data():
     zy = get_zy_data()
+    department = get_department_data()
     statement = "select Yxsh, Zydm, bjmc, Nj from v_bj"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
         k['major'] = zy[k['major']]
+        k['department_name'] = department[k['department_name']]
     return final_info_list
 
 
