@@ -114,7 +114,7 @@ def sdada_get_teacher_data():
     keys_list = ["department_name", 'name', 'number']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
-        k['sf'] = 
+        k['sf'] = 2
     return final_info_list
 
 
