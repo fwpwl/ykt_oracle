@@ -128,12 +128,14 @@ def sdada_get_course_data(year_term):
     jx0404id: 教学班
     Jxbid： 行政班id
     """
-    statement = "select Kch, Kcm, jx0404id, ktmc, Bh, Xm, Xnxqdm from v_it_kcb_kcbxx where Xnxqdm='{}'".format(year_term)
+    statement = "select jxbid, Kch, Kcm, jx0404id, ktmc, Bh, Xm, Xnxqdm from v_it_kcb_kcbxx where Xnxqdm='{}'".format(year_term)
 
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["course_code", "course_name", 'classroom_code', "classroom_name", "teacher_number",
+    keys_list = ["jxbid", "course_code", "course_name", 'classroom_code', "classroom_name", "teacher_number",
                  "teacher_name", "year_term"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
+    # for k in final_info_list:
+    #     k['department_name'] = 
     return final_info_list
 
 
