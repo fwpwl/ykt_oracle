@@ -88,7 +88,7 @@ def sdada_get_student_data():
     for k in final_info_list:
         k['department_name'] = department[k['department_name']]
         k['tra_class_name'] = class_dict[k['tra_class_name']]
-        k['sf'] = 3
+        k['user_type'] = 3
     return final_info_list + teacher_list
 
 
@@ -101,7 +101,7 @@ def sdada_get_gra_student_data():
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
         k['tra_class_name'] = class_dict[k['tra_class_name']]
-        k['sf'] = 3
+        k['user_type'] = 3
     return final_info_list
 
 
@@ -114,7 +114,7 @@ def sdada_get_teacher_data():
     keys_list = ["department_name", 'name', 'number']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
-        k['sf'] = 2
+        k['user_type'] = 2
     return final_info_list
 
 
