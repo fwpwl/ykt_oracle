@@ -47,6 +47,16 @@ def get_class_data():
         class_dict[k['bjdm']] = k['bjmc']
     return class_dict
 
+def get_zy_data():
+    statement = "select zydm, zymc from v_zy"
+    data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
+    keys_list = ["zydm", "zymc"]
+    final_info_list = query_data_to_dict_list(data_list, keys_list)
+    class_dict = {}
+    for k in final_info_list:
+        class_dict[k['zydm']] = k['zymc']
+    return class_dict
+
 def sdada_get_department_data():
     statement = "select mc,dm from v_dw"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
@@ -55,10 +65,13 @@ def sdada_get_department_data():
     return final_info_list
 
 def sdada_get_tra_data():
+    zy = get_zy_data()
     statement = "select Yxsh, Zydm, bjmc, Nj from v_bj"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
+    for k in final_info_list:
+        k[k['major']] = zy[k['major']]
     return final_info_list
 
 
