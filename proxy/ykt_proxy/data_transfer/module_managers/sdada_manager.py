@@ -56,7 +56,7 @@ def sdada_get_student_data():
     # 学院代码  班级代码 
     department = get_department_data()
     # print(department)
-    statement = "select YXSH, BJDM, XM, XH, XZNJ from v_bzks"
+    statement = "select YXSH, v_bj.bjdm, XM, XH, XZNJ from v_bzks, v_bj where v_bzks.BJDM = v_bj.bjdm"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
 
