@@ -85,7 +85,7 @@ def sdada_get_student_data():
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
-    for k in final_info_list + gra_student:
+    for k in final_info_list:
         k['department_name'] = department[k['department_name']]
         k['tra_class_name'] = class_dict[k['tra_class_name']]
         k['sf'] = 3
@@ -94,11 +94,14 @@ def sdada_get_student_data():
 
 def sdada_get_gra_student_data():
     # 学院代码  班级代码 
-    # class_dict = get_class_data()
+    class_dict = get_class_data()
     statement = "select YXSH, BJDM, XM, XH, XZNJ from v_yjs"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
+    for k in final_info_list:
+        k['tra_class_name'] = class_dict[k['tra_class_name']]
+        k['sf'] = 3
     return final_info_list
 
 
@@ -111,7 +114,7 @@ def sdada_get_teacher_data():
     keys_list = ["department_name", 'name', 'number']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
-        k['sf'] = 2
+        k['sf'] = 
     return final_info_list
 
 
