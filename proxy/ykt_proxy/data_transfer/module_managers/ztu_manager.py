@@ -53,7 +53,7 @@ def ztu_get_user_data():
 def ztu_get_course_data(year, term):
     statement = "select SSXY, kch, kcmc, kcbjmc, jsgh, jsxm, KKXN, KKXQ from bxqkkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "course_code", "course_name", "classroom_name", 
+    keys_list = ["department_name", "course_code", "course_name", "classroom_code", 
         "teacher_number", "teacher_name", "year", "term"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
