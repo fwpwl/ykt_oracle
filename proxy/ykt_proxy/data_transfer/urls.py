@@ -40,7 +40,7 @@ urlpatterns += [
     url(r"^sdada/", include("data_transfer.module_urls.sdada_urls")),
     # 内蒙古科技大学
     url(r"^imust/", include("data_transfer.module_urls.imust_urls")),
-    # 邵通学院
-    url(r"^jwxt/", include("data_transfer.module_urls.jwxt_urls")),
+    # 昭通学院
+    url(r"^ztu/", include("data_transfer.module_urls.ztu_urls")),
 
 ]
