@@ -37,7 +37,7 @@ def ztu_get_department_data():
     return final_info_list
 
 def ztu_get_tra_data():
-    statement = "select XSM, ZYM, BJH, RXNJ from xzbjb"
+    statement = "select XSM, ZYM, BJH, RXNJ from zxbjb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
@@ -58,7 +58,7 @@ def ztu_get_course_data(year='2019', term='2'):
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
-def ztu_get_choose_data(year='2019-2020', term='2'):
+def ztu_get_choose_data(year='2019', term='2'):
     statement = "select XKH, XH from bxqxkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
