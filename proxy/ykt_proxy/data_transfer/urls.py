@@ -42,5 +42,7 @@ urlpatterns += [
     url(r"^imust/", include("data_transfer.module_urls.imust_urls")),
     # 昭通学院
     url(r"^ztu/", include("data_transfer.module_urls.ztu_urls")),
+    # 成都信息工程大学
+    url(r"^cuit/", include("data_transfer.module_urls.cuit_urls")),
 
 ]
