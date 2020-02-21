@@ -36,6 +36,16 @@ def imust_get_department_data():
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
+def get_department_data():
+    department_dict = {}
+    statement = "select xsh, xymc from xyxxb"
+    data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
+    keys_list = ["department_code", "department_name"]
+    final_info_list = query_data_to_dict_list(data_list, keys_list)
+    for k in final_info_list:
+        department_dict[k['department_code']] = k['department_name']
+    return department_dict
+
 def imust_get_tra_data():
     statement = "select XSM, ZYM, BJH, RXNJ from xzbjb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
@@ -51,11 +61,14 @@ def imust_get_user_data():
     return final_info_list
 
 def imust_get_course_data(year='2019', term='2'):
-    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from bxqkkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
+    department_dict = get_department_data()
+    statement = "select KKXSH, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from bxqkkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
+    keys_list = ["department_code", "course_code", "course_name", 'classroom_code', "classroom_name", 
         "teacher_number", "teacher_name", "year", "term"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
+    for k in final_info_list:
+        k['department_name'] = department_dict[k['department_code']]
     return final_info_list
 
 def imust_get_choose_data(year='2019-2020', term='2'):

@@ -1,0 +1,6 @@
+db_conn=cx_Oracle.connect('test/test123456@219.217.228.105/hitdb1')
+db_cursor=db_conn.cursor()
+
+219.217.228.105
+实例：hitdb1
+用户及密码：JW_V_YKT/hit2020ykt
