@@ -30,28 +30,28 @@ def query_data_to_dict_list(query_data_list_of_tuple, keys_list):
 
 
 def hnnuyjs_get_department_data():
-    statement = "select xymc from yks_ykt_xyxxb"
+    statement = "select xymc from hunnu_share.yks_ykt_xyxxb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", ]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def hnnuyjs_get_tra_data():
-    statement = "select ssxy, ZY, bjmc, RXNJ from yks_ykt_xyxxb"
+    statement = "select ssxy, ZY, bjmc, RXNJ from hunnu_share.yks_ykt_xyxxb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def hnnuyjs_get_user_data():
-    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from yks_ykt_xyxxb"
+    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from hunnu_share.yks_ykt_xyxxb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'user_type', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def hnnuyjs_get_course_data(year='2019', term='2'):
-    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from yjs_ykt_kc where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from hunnu_share.yjs_ykt_kc where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
         "teacher_number", "teacher_name", "year", "term"]
