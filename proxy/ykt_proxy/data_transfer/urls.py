@@ -46,5 +46,7 @@ urlpatterns += [
     url(r"^cuit/", include("data_transfer.module_urls.cuit_urls")),
     # 哈尔滨工业大学
     url(r"^hit/", include("data_transfer.module_urls.hit_urls")),
+    # 湖南师范大学研究生院
+    url(r"^hnnuyjs/", include("data_transfer.module_urls.hnnuyjs_urls")),
 
 ]
