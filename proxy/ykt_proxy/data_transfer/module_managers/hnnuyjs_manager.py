@@ -8,7 +8,7 @@ def get_db_client():
     """
     数据库连接
     """
-    db_client = OracleTransferHandler(connect_str="yjs_ykt_share/yjs_ykt_share@202.197.122.25:1521/sdorcl")
+    db_client = OracleTransferHandler(connect_str="yjs_ykt_share/yjs_ykt_share123456@202.197.122.25:1522/sdorcl")
     return db_client
 
 
