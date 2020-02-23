@@ -44,9 +44,9 @@ def hnnuyjs_get_tra_data():
     return final_info_list
 
 def hnnuyjs_get_user_data():
-    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from hunnu_share.yks_ykt_xyxxb"
+    statement = "select SSXY, XM, XH, SF, RXNY from hunnu_share.yks_ykt_rysj"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "tra_class_name", 'name', 'number', 'user_type', 'year']
+    keys_list = ["department_name", 'name', 'number', 'user_type', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
