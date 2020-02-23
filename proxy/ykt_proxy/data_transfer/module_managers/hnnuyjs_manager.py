@@ -36,12 +36,12 @@ def hnnuyjs_get_department_data():
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
-# def hnnuyjs_get_tra_data():
-#     statement = "select ssxy, ZY, bjmc, RXNJ from yks_ykt_xyxxb"
-#     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-#     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
-#     final_info_list = query_data_to_dict_list(data_list, keys_list)
-#     return final_info_list
+def hnnuyjs_get_tra_data():
+    statement = "select ssxy, ZY, bjmc, RXNJ from yks_ykt_xyxxb"
+    data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
+    keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
+    final_info_list = query_data_to_dict_list(data_list, keys_list)
+    return final_info_list
 
 def hnnuyjs_get_user_data():
     statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from yks_ykt_xyxxb"
