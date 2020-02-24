@@ -48,5 +48,7 @@ urlpatterns += [
     url(r"^hit/", include("data_transfer.module_urls.hit_urls")),
     # 湖南师范大学研究生院
     url(r"^hnnuyjs/", include("data_transfer.module_urls.hnnuyjs_urls")),
+    # 中国刑事警察学院
+    url(r"^cipuc/", include("data_transfer.module_urls.cipuc_urls")),
 
 ]
