@@ -51,7 +51,7 @@ def cipuc_get_user_data():
     return final_info_list
 
 def cipuc_get_course_data(year, term):
-    statement = "select KKXY, KCDM, kcmc, XKKH, bjmc, JSXGH, jsxm, XN, XQ from YKT_KKXX where XN='{}' and XQ='{}'".format(year, term)
+    statement = "select KKXY, KCDM, KCMC, XKKH, BJMC, JSZGH, jsxm, XN, XQ from YKT_KKXX where XN='{}' and XQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
         "teacher_number", "teacher_name", "year", "term"]
