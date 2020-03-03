@@ -53,6 +53,8 @@ def hnit_get_tra_data():
     keys_list = ["department_id", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
+        if k['department_id'] == '99':
+            continue
         k['department_name'] = department_dict[k['department_id']]
     return final_info_list
 
@@ -64,13 +66,15 @@ def hnit_get_user_data():
     keys_list = ["department_id", "tra_class_name", 'name', 'number', 'user_type', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list + teachers:
+        if k['department_id'] == '99':
+            continue
         k['department_name'] = department_dict[k['department_id']]
     return final_info_list + teachers
 
 def get_teacher_data():
     statement = "select SSYX, XM, XH, sf from LY_YKT_VIEW_JZGJBXX"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", 'name', 'number', 'user_type']
+    keys_list = ["department_id", 'name', 'number', 'user_type']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
         k['tra_classroom_name'] = None
@@ -81,10 +85,12 @@ def hnit_get_course_data(year, term):
     department_dict = get_department()
     statement = "select SSYX, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from LY_YKT_VIEW_BXQKKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
+    keys_list = ["department_id", "course_code", "course_name", 'classroom_code', "classroom_name", 
         "teacher_number", "teacher_name", "year", "term"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
+        if k['department_id'] == '99':
+            continue
         k['department_name'] = department_dict[k['department_id']]
     return final_info_list
 
