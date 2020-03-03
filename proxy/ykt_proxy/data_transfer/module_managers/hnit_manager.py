@@ -68,7 +68,10 @@ def hnit_get_user_data():
     for k in final_info_list + teachers:
         if k['department_id'] == '99':
             continue
-        k['department_name'] = department_dict[k['department_id']]
+        if not k['department_id']:
+            k['department_name'] = None
+        else:
+            k['department_name'] = department_dict[k['department_id']]
     return final_info_list + teachers
 
 def get_teacher_data():
