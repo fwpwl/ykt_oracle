@@ -30,9 +30,9 @@ def query_data_to_dict_list(query_data_list_of_tuple, keys_list):
 
 
 def hnit_get_department_data():
-    statement = "select xymc, DWH, DWL from LY_YKT_VIEW_XYXXB"
+    statement = "select xymc, DWH from LY_YKT_VIEW_XYXXB"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "dwh", "dwl"]
+    keys_list = ["department_name", "ID"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
