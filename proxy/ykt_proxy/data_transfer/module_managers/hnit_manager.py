@@ -61,7 +61,7 @@ def hnit_get_tra_data():
 def hnit_get_user_data():
     department_dict = get_department()
     teachers = get_teacher_data()
-    statement = "select SSYX, xzbjmc, XM, XH, sf, rxxn from LY_YKT_VIEW_XSYHXX"
+    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from LY_YKT_VIEW_XSYHXX"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_id", "tra_class_name", 'name', 'number', 'user_type', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
@@ -72,7 +72,7 @@ def hnit_get_user_data():
     return final_info_list + teachers
 
 def get_teacher_data():
-    statement = "select SSYX, XM, XH, sf from LY_YKT_VIEW_JZGJBXX"
+    statement = "select SSXY, XM, XH, sf from LY_YKT_VIEW_JZGJBXX"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_id", 'name', 'number', 'user_type']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
@@ -83,7 +83,7 @@ def get_teacher_data():
 
 def hnit_get_course_data(year, term):
     department_dict = get_department()
-    statement = "select SSYX, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from LY_YKT_VIEW_BXQKKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from LY_YKT_VIEW_BXQKKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_id", "course_code", "course_name", 'classroom_code', "classroom_name", 
         "teacher_number", "teacher_name", "year", "term"]
