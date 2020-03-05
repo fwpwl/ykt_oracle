@@ -6,15 +6,15 @@ from data_transfer.utils.datetime_utils import get_now_datetime_str, FORMAT_DATE
 
 def get_db_client():
     """
-
+    数据库连接
     """
-    db_client = OracleTransferHandler(connect_str="hikvision/Ykt@2019@192.168.10.103:1521/tymhdb")
+    db_client = OracleTransferHandler(connect_str="hikvision/hikvision_8023@192.168.10.103:1521/tymhdb")
     return db_client
 
 
 def is_valid_request(key):
     """
-
+    key校验
     """
     if not key or key != cal_md5(get_now_datetime_str(FORMAT_DATE_WITHOUT_SEPARATOR)):
         return False
@@ -29,57 +29,38 @@ def query_data_to_dict_list(query_data_list_of_tuple, keys_list):
     return final_list
 
 
-# -----------------------  选课 数据 -----------------------
-def ynni_get_tra_class_data():
-    statement = "select ssxymc, bjmc, jsgh, jsjs, xw, bjrxnf, bjrxq from v_xzbjsj"
+def ynni_get_department_data():
+    statement = "select xymc from v_xyxxb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "tradition_class_name", 'teacher_number', 'role', 'grade', 'join_year', 'join_term']
-
+    keys_list = ["department_name", ]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
-
     return final_info_list
 
+def ynni_get_tra_data():
+    statement = "select ssxy, ZY, bjmc, RXNJ from v_xzbjb"
+    data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
+    keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
+    final_info_list = query_data_to_dict_list(data_list, keys_list)
+    return final_info_list
 
 def ynni_get_user_data():
-    statement = "select xm, xgh, rxnf, rxxq, ssxy, bjmc, sf from v_qtrysj"
+    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from v_qtcyb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["name", "number", 'join_year', 'term', 'department_name', 'tradition_class_name', 'user_type']
-
+    keys_list = ["department_name", "tra_class_name", 'name', 'number', 'user_type', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
-
     return final_info_list
 
-
-def ynni_get_teacher_data():
-    statement = "select xm, gh, lxrq, dwh, dwmc from dbm.v_js_jcsj"
+def ynni_get_course_data(year, term):
+    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from v_bxqkkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["name", "number", 'join_year', 'department_code', 'department_name']
-
+    keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
+        "teacher_number", "teacher_name", "year", "term"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
-
     return final_info_list
 
-
-def ynni_get_course_data(year='2019', term='1'):
-    statement = "select kcmc, kch, kxh, kcbjm, kcssyx, jsgh, kkxn, kkxq, sksj from v_kcjbsj where kkxn='{}' and kkxq='{}'".format(
-        year, term)
-    print(statement)
-
+def ynni_get_choose_data(year, term):
+    statement = "select XKH, XH from v_bxqxkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["course_name", "course_code", 'classroom_code', "classroom_name", "department_name",
-                 "teacher_number", "start_year", "start_term", "classroom_time"]
-
+    keys_list = ["classroom_code", "student_number"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
-
-    return final_info_list
-
-
-def ynni_get_choose_data(year='2019', term='1'):
-    statement = "select a.kxh, a.xh from v_xksj a, v_kcjbsj b where a.kxh=b.kxh and b.kkxn='{}' and b.kkxq='{}'".format(
-        year, term)
-
-    data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["classroom_code", "number"]
-    final_info_list = query_data_to_dict_list(data_list, keys_list)
-
     return final_info_list
