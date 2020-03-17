@@ -52,5 +52,9 @@ urlpatterns += [
     url(r"^cipuc/", include("data_transfer.module_urls.cipuc_urls")),
     # 湖南工学院
     url(r"^hnit/", include("data_transfer.module_urls.hnit_urls")),
+    # 嘉兴学院
+    url(r"^zjxu/", include("data_transfer.module_urls.zjxu_urls")),
+    # 河北农业大学
+    url(r"^hebau/", include("data_transfer.module_urls.hebau_urls")),
 
 ]
