@@ -50,7 +50,7 @@ def cuit_get_user_data():
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
-def cuit_get_course_data(year='2019', term='2'):
+def cuit_get_course_data(year, term):
     statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from bxqkkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
@@ -58,7 +58,7 @@ def cuit_get_course_data(year='2019', term='2'):
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
-def cuit_get_choose_data(year='2019-2020', term='2'):
+def cuit_get_choose_data(year, term):
     statement = "select XKH, XH from bxqxkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
