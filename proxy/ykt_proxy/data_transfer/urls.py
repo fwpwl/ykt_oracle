@@ -30,10 +30,6 @@ urlpatterns += [
     url(r"^nwnu/", include("data_transfer.module_urls.nwnu_urls")),
     url(r"^cidp/", include("data_transfer.module_urls.cidp_urls")),
     url(r"^sdcit/", include("data_transfer.module_urls.sdcit_urls")),
-    # 北京信息科技大学
-    url(r"^bistu/", include("data_transfer.module_urls.bistu_urls")),
-    # 中国医科大学
-    url(r"^cmu/", include("data_transfer.module_urls.cmu_urls")),
 
     # 冯武鹏新增
     # 山东工艺
