@@ -8,7 +8,7 @@ def get_db_client():
     """
     数据库连接
     """
-    db_client = OracleTransferHandler(connect_str="yuketang/yuketang2020_DB@10.253.6.132:1521/orcl")
+    db_client = OracleTransferHandler(connect_str="jxxyykt/jxxyykt1234@10.2.4.160:1521/oracle11")
     return db_client
 
 
@@ -37,14 +37,14 @@ def zjxu_get_department_data():
     return final_info_list
 
 def zjxu_get_tra_data():
-    statement = "select ssxy, ZY, bjmc, RXNJ from xzbjb"
+    statement = "select ssxy, ZY, bjmc, RXXN from xzbjb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def zjxu_get_user_data():
-    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from qtcyb"
+    statement = "select SSXY, xzbjmc, XM, XH, SF, RXXN from qtcyb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'user_type', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
@@ -59,7 +59,7 @@ def zjxu_get_course_data(year, term):
     return final_info_list
 
 def zjxu_get_choose_data(year, term):
-    statement = "select XKH, XH from bxqxkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select JXB_ID, XH from bxqxkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
