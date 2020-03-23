@@ -52,5 +52,7 @@ urlpatterns += [
     url(r"^zjxu/", include("data_transfer.module_urls.zjxu_urls")),
     # 河北农业大学
     url(r"^hebau/", include("data_transfer.module_urls.hebau_urls")),
+    # 宁波城市职业技术学院
+    url(r"^nbcc/", include("data_transfer.module_urls.nbcc_urls")),
 
 ]
