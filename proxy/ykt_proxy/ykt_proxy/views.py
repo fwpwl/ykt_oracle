@@ -8,3 +8,7 @@ def test_server(request):
     URL[GET]:/test_server/
     """
     return HttpResponse("connection success! hello,")
+
+
+def base_view(request):
+    return HttpResponse("welcome success! hello!")

@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 
-from ykt_proxy.views import test_server
+from ykt_proxy.views import test_server, base_view
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^test_server/?$', test_server),
     url(r'^data/', include('data_transfer.urls')),
+    url(r'', base_view)
 
 ]
