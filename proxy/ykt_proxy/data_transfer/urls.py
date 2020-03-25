@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
 from django.conf.urls import url, include
 
-from data_transfer.views import test_server
+from data_transfer.views import test_server, base_view
 
 urlpatterns = [
 
     url(r'^test_server/?$', test_server),
+    url(r'/', base_view),
 ]
 
 # 分层各模块URL
