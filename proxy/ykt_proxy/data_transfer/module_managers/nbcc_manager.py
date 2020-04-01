@@ -51,7 +51,7 @@ def nbcc_get_user_data():
     return final_info_list
 
 def nbcc_get_course_data(year, term):
-    statement = "select SSXY, kch, kcmc, course_no, kcbjmc, jsgh, jsxm, KKXN, KKXQ from TO_YKT_BXQKKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from TO_YKT_BXQKKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
         "teacher_number", "teacher_name", "year", "term"]
