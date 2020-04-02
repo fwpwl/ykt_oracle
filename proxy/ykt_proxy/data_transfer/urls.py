@@ -54,5 +54,7 @@ urlpatterns += [
     url(r"^hebau/", include("data_transfer.module_urls.hebau_urls")),
     # 宁波城市职业技术学院
     url(r"^nbcc/", include("data_transfer.module_urls.nbcc_urls")),
+    # 海南师范大学
+    url(r"^hainnu/", include("data_transfer.module_urls.hainnu_urls")),
 
 ]
