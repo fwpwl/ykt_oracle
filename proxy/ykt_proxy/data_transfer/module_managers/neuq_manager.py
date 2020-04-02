@@ -8,7 +8,7 @@ def get_db_client():
     """
     数据库连接
     """
-    db_client = OracleTransferHandler(connect_str="zfsoft_jw_ykt/zfsoft_jw_1q2w3e@172.20.254.212:1521/oracle")
+    db_client = OracleTransferHandler(connect_str="ykt/ykt@202.206.20.173:1521/neuq")
     return db_client
 
 
@@ -29,28 +29,28 @@ def query_data_to_dict_list(query_data_list_of_tuple, keys_list):
     return final_list
 
 
-def hainnu_get_department_data():
+def neuq_get_department_data():
     statement = "select xymc from xyxxb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", ]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
-def hainnu_get_tra_data():
+def neuq_get_tra_data():
     statement = "select ssxy, ZY, bjmc, RXNJ from xzbjb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
-def hainnu_get_user_data():
-    statement = "select XY, XZB, XM, XH, SF, DQSZJ from qtcyb"
+def neuq_get_user_data():
+    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from qtcyb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'user_type', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
-def hainnu_get_course_data(year, term):
+def neuq_get_course_data(year, term):
     statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from bxqkkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
@@ -58,7 +58,7 @@ def hainnu_get_course_data(year, term):
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
-def hainnu_get_choose_data(year, term):
+def neuq_get_choose_data(year, term):
     statement = "select XKH, XH from bxqxkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
