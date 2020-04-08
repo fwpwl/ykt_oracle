@@ -43,23 +43,31 @@ def neuq_get_tra_data():
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
-def neuq_get_user_data():
-    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from qtcyb"
+
+def neuq_get_teacher_data():
+    statement = "select jgmc, xm, jgh from jsjbxx"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "tra_class_name", 'name', 'number', 'user_type', 'year']
+    keys_list = ["department_name", 'name', 'number']
+    final_info_list = query_data_to_dict_list(data_list, keys_list)
+    return final_info_list
+
+def neuq_get_user_data():
+    statement = "select jgmc, bj, XM, XH, rxxn from xsjbxx"
+    data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
+    keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def neuq_get_course_data(year, term):
-    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from bxqkkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select kch, kcmc, jxb_id, jxbmc, jsbm, jsmc, xnmc, xqmc from kkxx where xqmc='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
+    keys_list = ["course_code", "course_name", 'classroom_code', "classroom_name", 
         "teacher_number", "teacher_name", "year", "term"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def neuq_get_choose_data(year, term):
-    statement = "select XKH, XH from bxqxkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select jxb_id, XH from xsxkxx"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
