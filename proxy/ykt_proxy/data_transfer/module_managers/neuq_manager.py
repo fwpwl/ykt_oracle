@@ -67,7 +67,7 @@ def neuq_get_course_data(year, term):
     return final_info_list
 
 def neuq_get_choose_data(year, term):
-    statement = "select jxb_id, XH from xsxkxx"
+    statement = "select jxb_id, XH from xsxkxx where XNMC='{}' and XQMC='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
