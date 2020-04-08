@@ -59,9 +59,9 @@ def neuq_get_user_data():
     return final_info_list
 
 def neuq_get_course_data(year, term):
-    statement = "select kch, kcmc, jxb_id, jxbmc, jsbm, jsmc, xnmc, xqmc from kkxx where XQMC='{}'".format(year, term)
+    statement = "select jsbm, kch, kcmc, jxb_id, jxbmc, jsbm, jsmc, xnmc, xqmc from kkxx where XNMC='{}' and XQMC='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["course_code", "course_name", 'classroom_code', "classroom_name", 
+    keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
         "teacher_number", "teacher_name", "year", "term"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
