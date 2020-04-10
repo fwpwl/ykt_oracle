@@ -43,20 +43,25 @@ def neuq_get_tra_data():
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
-
 def neuq_get_teacher_data():
     statement = "select jgmc, xm, jgh from jsjbxx"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", 'name', 'number']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
+    for k in final_info_list:
+        k['user_type'] = 2
+        k['year'] = 0
     return final_info_list
 
 def neuq_get_user_data():
+    teachers = neuq_get_teacher_data()
     statement = "select jgmc, bj, XM, XH, rxxn from xsjbxx"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
-    return final_info_list
+    for k in final_info_list:
+        k['user_type'] = 3
+    return final_info_list + neuq_get_teacher_data
 
 def neuq_get_course_data(year, term):
     statement = "select jsbm, kch, kcmc, jxb_id, jxbmc, jgh, jsmc, xnmc, xqmc from kkxx where XNMC='{}' and XQMC='{}'".format(year, term)
