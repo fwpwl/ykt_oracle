@@ -58,5 +58,7 @@ urlpatterns += [
     url(r"^hainnu/", include("data_transfer.module_urls.hainnu_urls")),
     # 东北大学秦皇岛分校
     url(r"^neuq/", include("data_transfer.module_urls.neuq_urls")),
+    # 星海音乐学院
+    url(r"^xhcom/", include("data_transfer.module_urls.xhcom_urls")),
 
 ]
