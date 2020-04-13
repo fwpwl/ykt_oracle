@@ -61,7 +61,7 @@ def neuq_get_user_data():
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
         k['user_type'] = 3
-    return final_info_list + neuq_get_teacher_data
+    return final_info_list + teachers
 
 def neuq_get_course_data(year, term):
     statement = "select jsbm, kch, kcmc, jxb_id, jxbmc, jgh, jsmc, xnmc, xqmc from kkxx where XNMC='{}' and XQMC='{}'".format(year, term)
