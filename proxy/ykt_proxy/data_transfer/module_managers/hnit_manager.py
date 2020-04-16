@@ -94,7 +94,11 @@ def hnit_get_course_data(year, term):
     for k in final_info_list:
         if k['department_id'] == '99':
             continue
-        k['department_name'] = department_dict[k['department_id']]
+        try:
+            k['department_name'] = department_dict[k['department_id']]
+        except Exception as e:
+            print(e)
+            continue
     return final_info_list
 
 def hnit_get_choose_data(year, term):
