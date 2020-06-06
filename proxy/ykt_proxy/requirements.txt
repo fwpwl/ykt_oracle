@@ -1,4 +1,4 @@
-Django==1.11.28
+Django==1.11.29
 cx_Oracle==6.4.1
 gunicorn==19.9.0
 requests
