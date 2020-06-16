@@ -30,28 +30,28 @@ def query_data_to_dict_list(query_data_list_of_tuple, keys_list):
 
 
 def ouc_get_department_data():
-    statement = "select xymc from V_YKT_XYXXB"
+    statement = "select mc from dbm.V_YKT_XYXXB"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", ]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def ouc_get_tra_data():
-    statement = "select ssxy, ZY, bjmc, RXNJ from xzbjb"
+    statement = "select ssxy, zy, bjmc, RXNJ from dbm.xzbjb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def ouc_get_user_data():
-    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from V_YKT_QTCYB"
+    statement = "select SSXY, sszy, XM, xgh, sf, rxxn from dbm.V_YKT_QTCYB"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'user_type', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def ouc_get_course_data(year, term):
-    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from V_YKT_KKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from dbm.V_YKT_KKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
         "teacher_number", "teacher_name", "year", "term"]
@@ -59,7 +59,7 @@ def ouc_get_course_data(year, term):
     return final_info_list
 
 def ouc_get_choose_data(year, term):
-    statement = "select XKH, XH from V_YKT_XKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select BJBH, XH from dbm.V_YKT_XKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
