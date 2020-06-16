@@ -51,6 +51,7 @@ def ouc_get_user_data():
     return final_info_list
 
 def ouc_get_course_data(year, term):
+    print('------------', term, type(term))
     term = urllib.unquote(term).decode('utf8')
     print(term)
     statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from dbm.V_YKT_KKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
