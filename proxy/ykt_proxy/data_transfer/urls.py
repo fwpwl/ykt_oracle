@@ -60,5 +60,7 @@ urlpatterns += [
     url(r"^neuq/", include("data_transfer.module_urls.neuq_urls")),
     # 星海音乐学院
     url(r"^xhcom/", include("data_transfer.module_urls.xhcom_urls")),
+    # 中国海洋大学
+    url(r"^ouc/", include("data_transfer.module_urls.ouc_urls")),
 
 ]
