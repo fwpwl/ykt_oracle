@@ -2,7 +2,7 @@
 from data_transfer.data_proxy_utils import OracleTransferHandler
 from data_transfer.utils.common_tools import cal_md5
 from data_transfer.utils.datetime_utils import get_now_datetime_str, FORMAT_DATE_WITHOUT_SEPARATOR
-
+import urllib
 
 def get_db_client():
     """
@@ -51,6 +51,8 @@ def ouc_get_user_data():
     return final_info_list
 
 def ouc_get_course_data(year, term):
+    term = urllib.unquote(term).decode('utf8')
+    print(term)
     statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from dbm.V_YKT_KKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
@@ -59,6 +61,8 @@ def ouc_get_course_data(year, term):
     return final_info_list
 
 def ouc_get_choose_data(year, term):
+    term = urllib.unquote(term).decode('utf8')
+    print(term)
     statement = "select BJBH, XH from dbm.V_YKT_XKXXB where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
