@@ -22,9 +22,9 @@ def query_data_to_dict_list(query_data_list_of_tuple, keys_list):
 
 
 def hitwh_get_department_data():
-    statement = "select xsh, xymc from xyxxb"
+    statement = "select xymc from xyxxb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_code", "department_name"]
+    keys_list = ["department_name"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
