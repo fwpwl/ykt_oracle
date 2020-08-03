@@ -53,14 +53,11 @@ def hitwh_get_user_data():
     return final_info_list
 
 def hitwh_get_course_data(year, term):
-    department_dict = get_department_data()
-    statement = "select KKXSH, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from bxqkkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from bxqkkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_code", "course_code", "course_name", 'classroom_code', "classroom_name", 
+    keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
         "teacher_number", "teacher_name", "year", "term"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
-    for k in final_info_list:
-        k['department_name'] = department_dict[k['department_code']]
     return final_info_list
 
 def hitwh_get_choose_data(year, term):
