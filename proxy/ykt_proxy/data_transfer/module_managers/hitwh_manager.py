@@ -39,7 +39,7 @@ def get_department_data():
     return department_dict
 
 def hitwh_get_tra_data():
-    statement = "select XSM, ZYM, BJH, RXNJ from xzbjb"
+    statement = "select SSXY, ZY, BJMC, RXXN from xzbjb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
