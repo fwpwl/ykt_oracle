@@ -62,5 +62,7 @@ urlpatterns += [
     url(r"^xhcom/", include("data_transfer.module_urls.xhcom_urls")),
     # 中国海洋大学
     url(r"^ouc/", include("data_transfer.module_urls.ouc_urls")),
+    # 哈尔滨大学威海校区
+    url(r"^hitwh/", include("data_transfer.module_urls.hitwh_urls")),
 
 ]
