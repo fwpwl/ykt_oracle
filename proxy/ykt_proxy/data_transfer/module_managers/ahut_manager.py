@@ -37,31 +37,35 @@ def ahut_get_department_data():
     return final_info_list
 
 def ahut_get_tra_data():
-    statement = "select ssxy, ZY, bjmc, RXNJ from Vykt_xzbjb"
+    statement = "select ssxy, ZY, bjmc, RXXN from Vykt_xzbjb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def ahut_get_student_data():
-    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from Vykt_xsjbxxb"
+    statement = "select XYMC, bjmc, XM, XH, sf, RXNY from Vykt_xsjbxxb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "tra_class_name", 'name', 'number', 'user_type', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
+    for k in final_info_list:
+        k['user_type'] = 3
     return final_info_list
 
 def ahut_get_teacher_data():
-    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from Vykt_jzgxxb"
+    statement = "select DWMC, XM, JGH from Vykt_jzgxxb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "tra_class_name", 'name', 'number', 'user_type', 'year']
+    keys_list = ["department_name", 'name', 'number']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
+    for k in final_info_list:
+        k['user_type'] = 2
     return final_info_list
 
 def ahut_get_user_data():
     return ahut_get_student_data() + ahut_get_teacher_data()
 
 def ahut_get_course_data(year, term):
-    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from Vykt_kkxx where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select DWMC, KCDM, KCMC, XKKH, kcbjmc, JSZGH, JSXM, KKXN, KKXQ from Vykt_kkxx where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
         "teacher_number", "teacher_name", "year", "term"]
@@ -69,7 +73,7 @@ def ahut_get_course_data(year, term):
     return final_info_list
 
 def ahut_get_choose_data(year, term):
-    statement = "select XKH, XH from Vykt_xsxkxx where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select XKKH, XH from Vykt_xsxkxx where XN='{}' and XQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
