@@ -44,9 +44,9 @@ def ahut_get_tra_data():
     return final_info_list
 
 def ahut_get_student_data():
-    statement = "select XYMC, bjmc, XM, XH, sf, RXNY from Vykt_xsjbxxb"
+    statement = "select XYMC, bjmc, XM, XH, RXNY from Vykt_xsjbxxb"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "tra_class_name", 'name', 'number', 'user_type', 'year']
+    keys_list = ["department_name", "tra_class_name", 'name', 'number', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
         k['user_type'] = 3
