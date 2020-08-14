@@ -65,9 +65,9 @@ def ahut_get_user_data():
     return ahut_get_student_data() + ahut_get_teacher_data()
 
 def ahut_get_course_data(year, term):
-    statement = "select DWMC, KCDM, KCMC, XKKH, kcbjmc, JSZGH, JSXM, KKXN, KKXQ from Vykt_kkxx where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select DWMC, KCDM, KCMC, XKKH, JSZGH, JSXM, KKXN, KKXQ from Vykt_kkxx where KKXN='{}' and KKXQ='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
+    keys_list = ["department_name", "course_code", "course_name", 'classroom_code', 
         "teacher_number", "teacher_name", "year", "term"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
