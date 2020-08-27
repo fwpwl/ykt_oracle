@@ -65,9 +65,9 @@ def grapumc_get_user_data():
     return grapumc_get_student_data() + grapumc_get_teacher_data()
 
 def grapumc_get_course_data(year, term):
-    if term == 1:
+    if term == "1":
         term = "秋"
-    elif term == 2:
+    elif term == "2":
         term = "春"
     statement = "select DEPNAME, PCOURSEID, COURSENAME, CSEQ, TEACHERNO, TEACHERNAME, YEAR, TERM from V_KKXX where YEAR={} and TERM='{}'".format(year, term)
     print(statement)
@@ -78,9 +78,9 @@ def grapumc_get_course_data(year, term):
     return final_info_list
 
 def grapumc_get_choose_data(year, term):
-    if term == 1:
+    if term == "1":
         term = "秋"
-    elif term == 2:
+    elif term == "2":
         term = "春"
     statement = "select CSEQ, USERNAME, PCOURSEID from V_XK where YEAR={} and TERM='{}'".format(year, term)
     print(statement)
