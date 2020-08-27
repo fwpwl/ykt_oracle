@@ -66,5 +66,7 @@ urlpatterns += [
     url(r"^hitwh/", include("data_transfer.module_urls.hitwh_urls")),
     # 安徽工业大学
     url(r"^ahut/", include("data_transfer.module_urls.ahut_urls")),
+    # 北京协和医院研究生院
+    url(r"^grapumc/", include("data_transfer.module_urls.grapumc_urls")),
 
 ]
