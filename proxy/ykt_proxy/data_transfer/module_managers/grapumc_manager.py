@@ -81,8 +81,8 @@ def grapumc_get_choose_data(year, term):
         term = "秋"
     elif term == 2:
         term = "春"
-    statement = "select CSEQ, USERNAME from V_XK where YEAR='{}' and TERM='{}'".format(year, term)
+    statement = "select CSEQ, USERNAME, PCOURSEID from V_XK where YEAR='{}' and TERM='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["classroom_code", "student_number"]
+    keys_list = ["classroom_code", "student_number", "course_code"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
