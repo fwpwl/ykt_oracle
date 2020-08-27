@@ -69,7 +69,7 @@ def grapumc_get_course_data(year, term):
         term = "秋"
     elif term == 2:
         term = "春"
-    statement = "select DEPNAME, PCOURSEID, COURSENAME, CSEQ, TEACHERNO, TEACHERNAME, YEAR, TERM from V_KKXX where YEAR='{}' and TERM='{}'".format(year, term)
+    statement = "select DEPNAME, PCOURSEID, COURSENAME, CSEQ, TEACHERNO, TEACHERNAME, YEAR, TERM from V_KKXX where YEAR={} and TERM='{}'".format(year, term)
     print(statement)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "course_code", "course_name", 'classroom_code', 
@@ -82,7 +82,7 @@ def grapumc_get_choose_data(year, term):
         term = "秋"
     elif term == 2:
         term = "春"
-    statement = "select CSEQ, USERNAME, PCOURSEID from V_XK where YEAR='{}' and TERM='{}'".format(year, term)
+    statement = "select CSEQ, USERNAME, PCOURSEID from V_XK where YEAR={} and TERM='{}'".format(year, term)
     print(statement)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number", "course_code"]
