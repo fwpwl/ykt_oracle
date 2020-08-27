@@ -49,7 +49,7 @@ def grapumc_get_student_data():
     keys_list = ["department_name", 'name', 'number', 'year', 'tra_class_name']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
-        k['user_typer'] = 3
+        k['user_type'] = 3
     return final_info_list
 
 def grapumc_get_teacher_data():
@@ -58,7 +58,7 @@ def grapumc_get_teacher_data():
     keys_list = ["department_name", 'name', 'number']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
-        k['user_typer'] = 2
+        k['user_type'] = 2
     return final_info_list
 
 def grapumc_get_user_data():
