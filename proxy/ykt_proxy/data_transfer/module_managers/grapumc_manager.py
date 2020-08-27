@@ -7,14 +7,8 @@ from data_transfer.utils.datetime_utils import get_now_datetime_str, FORMAT_DATE
 def get_db_client():
     """
     数据库连接
-    "Oracle数据库连接字符串：
-username=graduate
-password=kuz2GaFSRjMu
-url=jdbc:oracle:thin:@124.17.100.125:1521:gbk
-
-以下数据是以oracle的同义词synonym形式提供的。"
     """
-    db_client = OracleTransferHandler(connect_str="graduate/kuz2GaFSRjMu@124.17.100.125:1521/gbk")
+    db_client = OracleTransferHandler(connect_str="graduate_view/kuz2GaFSRjMu@124.17.100.85:1521/gbk")
     return db_client
 
 
@@ -36,36 +30,50 @@ def query_data_to_dict_list(query_data_list_of_tuple, keys_list):
 
 
 def grapumc_get_department_data():
-    statement = "select xymc from xyxxb"
+    statement = "select DEPNAME from V_YXZYSZ"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", ]
+    keys_list = ["department_name"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def grapumc_get_tra_data():
-    statement = "select ssxy, ZY, bjmc, RXNJ from xzbjb"
+    statement = "select ssxy, ZY, bjmc, RXNJ from V_YXZYSZ"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
-def grapumc_get_user_data():
-    statement = "select SSXY, xzbjmc, XM, XH, sf, rxxn from qtcyb"
+def grapumc_get_student_data():
+    statement = "select DEPNAME, REALNAME, USERNAME, GRADENAME from V_YJS"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "tra_class_name", 'name', 'number', 'user_type', 'year']
+    keys_list = ["department_name", 'name', 'number', 'year']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
+    for k in final_info_list:
+        k['user_typer'] = 3
     return final_info_list
 
-def grapumc_get_course_data(year, term):
-    statement = "select SSXY, kch, kcmc, xkh, kcbjmc, jsgh, jsxm, KKXN, KKXQ from bxqkkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
+def grapumc_get_teacher_data():
+    statement = "select DEPNAME, REALNAME, USERNAME from V_JS"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "course_code", "course_name", 'classroom_code', "classroom_name", 
+    keys_list = ["department_name", 'name', 'number']
+    final_info_list = query_data_to_dict_list(data_list, keys_list)
+    for k in final_info_list:
+        k['user_typer'] = 2
+    return final_info_list
+
+def grapumc_get_user_data():
+    return grapumc_get_student_data() + grapumc_get_teacher_data()
+
+def grapumc_get_course_data(year, term):
+    statement = "select DEPNAME, PCOURSEID, COURSENAME, CSEQ, TEACHERNO, TEACHERNAME, YEAR, TERM from V_KKXX where YEAR='{}' and TERM='{}'".format(year, term)
+    data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
+    keys_list = ["department_name", "course_code", "course_name", 'classroom_code', 
         "teacher_number", "teacher_name", "year", "term"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def grapumc_get_choose_data(year, term):
-    statement = "select XKH, XH from bxqxkxxb where KKXN='{}' and KKXQ='{}'".format(year, term)
+    statement = "select CSEQ, USERNAME from V_XK where YEAR='{}' and TERM='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
     final_info_list = query_data_to_dict_list(data_list, keys_list)
