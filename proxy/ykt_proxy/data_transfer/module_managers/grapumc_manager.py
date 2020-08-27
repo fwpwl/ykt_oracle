@@ -37,16 +37,16 @@ def grapumc_get_department_data():
     return final_info_list
 
 def grapumc_get_tra_data():
-    statement = "select ssxy, ZY, bjmc, RXNJ from V_YXZYSZ"
+    statement = "select DEPNAME, MAJORNAME, MAJORNAME from V_YXZYSZ"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", "major", 'tra_classroom_name', "year"]
+    keys_list = ["department_name", "major", 'tra_classroom_name']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     return final_info_list
 
 def grapumc_get_student_data():
-    statement = "select DEPNAME, REALNAME, USERNAME, GRADENAME from V_YJS"
+    statement = "select DEPNAME, REALNAME, USERNAME, GRADENAME, MAJORNAME from V_YJS"
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
-    keys_list = ["department_name", 'name', 'number', 'year']
+    keys_list = ["department_name", 'name', 'number', 'year', 'tra_class_name']
     final_info_list = query_data_to_dict_list(data_list, keys_list)
     for k in final_info_list:
         k['user_typer'] = 3
@@ -65,6 +65,10 @@ def grapumc_get_user_data():
     return grapumc_get_student_data() + grapumc_get_teacher_data()
 
 def grapumc_get_course_data(year, term):
+    if term == 1:
+        term = "秋"
+    elif term == 2:
+        term = "春"
     statement = "select DEPNAME, PCOURSEID, COURSENAME, CSEQ, TEACHERNO, TEACHERNAME, YEAR, TERM from V_KKXX where YEAR='{}' and TERM='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["department_name", "course_code", "course_name", 'classroom_code', 
@@ -73,6 +77,10 @@ def grapumc_get_course_data(year, term):
     return final_info_list
 
 def grapumc_get_choose_data(year, term):
+    if term == 1:
+        term = "秋"
+    elif term == 2:
+        term = "春"
     statement = "select CSEQ, USERNAME from V_XK where YEAR='{}' and TERM='{}'".format(year, term)
     data_list = get_db_client().get_raw_data_by_statement(statement=statement, var_tuple=None)
     keys_list = ["classroom_code", "student_number"]
